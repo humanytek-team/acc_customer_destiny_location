@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--sales order form view -->
+        <record id="view_acc_client_warehouse_form" model="ir.ui.view">
+            <field name="name">acc.client.warehouse.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group[2]" position="inside">
+                    <field name="client_warehouse_id" string="Ubicación de cliente" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

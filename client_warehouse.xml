@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- VISTA DE FORMULARIO -->
+        <record id="view_client_warehose_form" model="ir.ui.view">
+            <field name="name">view_client_warehouse_form</field>
+            <field name="model">client.warehouse</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <form string="Ubicaciones de cliente" ><!-- create="false" edit="false" -->
+                    <group>
+                        <field name="name" string="Destino" />
+                        <field name="partner_id" string="Cliente"  options="{'limit': 10, 'no_quick_create':True,'no_create_edit':True}" /> 
+                        <!--
+                            'create': false, 'create_edit': false}
+                            Domain="[('customer','=',True)]"
+                        -->
+                    </group>
+                </form>
+            </field>
+        </record>           
+
+        <!-- VISTA DE ARBOL -->
+        <record id="view_client_warehouse_tree" model="ir.ui.view">
+            <field name="name">view_client_warehouse_tree</field>
+            <field name="model">client.warehouse</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Ubicaciones de cliente" ><!-- create="false" edit="false"-->
+                    <field name="name" string="Destino" />
+                    <field name="partner_id" string="Cliente" />
+                </tree>
+            </field> 
+        </record>               
+
+          
+        <!-- ACCION PARA VISTA DE ARBOL -->
+        <record id="action_client_warehouse" model="ir.actions.act_window">
+            <field name="name">Ubicaciones de clientes</field>
+            <field name="res_model">client.warehouse</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_client_warehouse_tree"/>
+            <field name="context">{}</field>
+            <field name="target">current</field>
+        </record>
+
+
+
+    <!-- ============================ MENUS PARA EL MODULO====================================== -->
+        <!--menuitem name="Ubicaciones de cliente" id="menu_client_warehouse" parent="sales_team.menu_config_address_book" action="action_client_warehouse" groups="base.group_system,base.group_partner_manager" /-->
+
+        <menuitem name="Cliente" id="menu_invoice_client_config" parent="account.menu_finance_configuration" groups="base.group_system,base.group_partner_manager,account.group_account_manager" />
+
+        <menuitem name="Ubicaciones de cliente" id="menu_client_warehouse" parent="menu_invoice_client_config" action="action_client_warehouse" groups="base.group_system,base.group_partner_manager,account.group_account_manager" />
+
+    </data>
+</openerp>

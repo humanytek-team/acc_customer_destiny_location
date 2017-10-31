@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!--sales order form view -->
+		<record id="view_so_client_warehouse_form" model="ir.ui.view">
+			<field name="name">so.client.warehouse.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/group/group[2]/field[@name='payment_term_id']" position="after">
+					<field name="client_warehouse_id" string="Ubicación de cliente" /><!--attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"-->
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
